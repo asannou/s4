@@ -17,7 +17,7 @@
       "Resource": "arn:aws:s3:::*",
       "Condition": {
         "Bool": {
-          "aws:SecureTransport": "true"
+          "aws:SecureTransport": "false"
         }
       }
     },
