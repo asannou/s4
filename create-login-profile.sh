@@ -3,17 +3,18 @@
 set -ex
 
 REGION='us-east-1'
+ADMIN='admin.txt'
 USERS='users.txt'
 
-ACCOUNT_ID="$1"
-USERNAME="$2"
+USERNAME="$1"
 
 NUM=$(cut -d ' ' -f 1 "$USERS" | grep -n -Fx "$USERNAME" | cut -d : -f 1)
 
 test -z "$NUM" && exit 1
 
+ACCOUNT_ID=$(cat "$ADMIN" | cut -d ' ' -f 1)
 SUBJECT="=?UTF-8?B?$(echo "https://$ACCOUNT_ID.signin.aws.amazon.com/console から IAM ユーザでログインしてください" | base64)?="
-FROM=$(cat admin.txt)
+FROM=$(cat "$ADMIN" | cut -d ' ' -f 2)
 TO=$(sed -n ${NUM}p "$USERS" | cut -d ' ' -f 2)
 PROFILE="$USERNAME.login-profile.json"
 

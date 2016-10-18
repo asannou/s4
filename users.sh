@@ -11,7 +11,7 @@ do
 resource "aws_iam_user" "$index" {
   name = "$user"
   provisioner "local-exec" {
-    command = "./create-login-profile.sh '\${data.aws_caller_identity.aws.account_id}' '$user'"
+    command = "./create-login-profile.sh '$user'"
   }
 }
 
