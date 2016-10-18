@@ -39,6 +39,18 @@ resource "template_file" "bucket_policy" {
   }
 }
 
+resource "aws_iam_policy" "user_policy" {
+  name = "s4.${var.s3_bucket}"
+  policy = "${template_file.user_policy.rendered}"
+}
+
+resource "template_file" "user_policy" {
+  template = "${file("user_policy.json")}"
+  vars {
+    account_id = "${data.aws_caller_identity.aws.account_id}"
+  }
+}
+
 resource "aws_iam_group" "group" {
   name = "s4.${var.s3_bucket}"
 }

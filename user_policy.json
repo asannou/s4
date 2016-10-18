@@ -1,0 +1,19 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:*AccessKey*"
+      ],
+      "Resource": "arn:aws:iam::${account_id}:user/$${aws:username}"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:ListUsers"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
