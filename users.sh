@@ -4,6 +4,7 @@ index=1
 
 while read line
 do
+  echo "$line" | grep -q '^\s*#' && continue
   user=$(echo "$line" | cut -d ' ' -f 1)
   users="${users}\"\${aws_iam_user.$index.name}\", "
   cat <<EOD

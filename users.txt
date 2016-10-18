@@ -1,2 +1,2 @@
-user01 alice@example.com
-user02 bob@example.com
+#user01 alice@example.com
+#user02 bob@example.com
