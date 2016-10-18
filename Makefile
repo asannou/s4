@@ -1,3 +1,3 @@
-users.tf: users
+users.tf: users.txt
 	./users.sh < $+ > $@
 
