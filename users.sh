@@ -1,18 +1,26 @@
 #!/bin/sh
 
-while read name
+index=1
+
+while read line
 do
-  user=$(echo "$name" | tr -c '[:alnum:]_-\n' '_')
-  users="${users}\"$name\", "
+  user=$(echo "$line" | cut -d ' ' -f 1)
+  users="${users}\"\${aws_iam_user.$index.name}\", "
   cat <<EOD
-resource "aws_iam_user" "$user" {
-  name = "$name"
+resource "aws_iam_user" "$index" {
+  name = "$user"
   provisioner "local-exec" {
-    command = "echo done '$name'"
+    command = "./create-login-profile.sh '\${data.aws_caller_identity.aws.account_id}' '$user'"
   }
 }
 
+resource "aws_iam_user_policy_attachment" "$index" {
+  user = "\${aws_iam_user.$index.name}"
+  policy_arn = "\${aws_iam_policy.user_policy.arn}"
+}
+
 EOD
+  index=$(expr $index + 1)
 done
 
 cat <<EOD
