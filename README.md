@@ -42,7 +42,7 @@ s3.bucket = test.123456789012
 
 * users.txt ファイルに、利用者のユーザ名とメールアドレスを追記
 ```
-user01 alice@example.com
+foobar01 alice@example.com
 ```
 * users.tf ファイルを作成
 ```
@@ -57,14 +57,14 @@ $ terraform apply
 
 #### 初期設定
 
-* メールアドレスに送信されたメールに従って AWS マネジメントコンソールに `user01` でサインイン
+* メールアドレスに送信されたメールに従って AWS マネジメントコンソールに `foobar01` でサインイン
 ```
 From: admin@example.com
 To: alice@example.com
-Subject: https://123456789012.signin.aws.amazon.com/console/iam#users/user01 からアクセスキーを作成してください
+Subject: https://123456789012.signin.aws.amazon.com/console/iam#users/foobar01 からアクセスキーを作成してください
 
 {
-    "UserName": "user01",
+    "UserName": "foobar01",
     "Password": "****************************************",
     "PasswordResetRequired": true
 }
@@ -85,4 +85,3 @@ Subject: https://123456789012.signin.aws.amazon.com/console/iam#users/user01 か
   * シークレットアクセスキー
   * 詳細設定
     * パス: `test.123456789012`
-
