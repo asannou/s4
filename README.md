@@ -27,6 +27,10 @@ s3_bucket = "foobar"
 ```
 s3_bucket_source_ip = "203.0.113.0/24"
 ```
+* S3 のバケットにファイルが作成されてから削除されるまでの日数を terraform.tfvars ファイルに記述
+```
+s3_bucket_expiration_days = "7"
+```
 * Terraform を適用
 ```
 $ terraform apply
@@ -40,7 +44,7 @@ s3.bucket = test.123456789012
 
 #### ユーザ作成
 
-* users.txt ファイルに、利用者のユーザ名とメールアドレスを追記
+* [users.txt](users.txt) ファイルに、利用者のユーザ名とメールアドレスを追記
 ```
 foobar01 alice@example.com
 ```
@@ -57,7 +61,7 @@ $ terraform apply
 
 #### 初期設定
 
-* メールアドレスに送信されたメールに従って AWS マネジメントコンソールに `foobar01` でサインイン
+* 管理者から送信されたメールに従って AWS マネジメントコンソールに `foobar01` でサインイン
 ```
 From: admin@example.com
 To: alice@example.com
