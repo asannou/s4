@@ -14,6 +14,14 @@ Secure S3
 * [AWS コマンドラインインターフェイス (CLI)](https://aws.amazon.com/cli/) と [Terraform](https://www.terraform.io/) をインストールする
 * AWS アカウントを作成する
 * アクセスキーを作成し CLI に設定する
+```
+$ aws configure --profile s4-foobar
+AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
+AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+Default region name [None]: ENTER
+Default output format [None]: ENTER
+$ export AWS_PROFILE=s4-foobar
+```
 * 管理者のメールアドレスを設定する
 ```
 $ ./verify-email-identity.sh admin@example.com
